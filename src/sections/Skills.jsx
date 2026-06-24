@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -22,6 +23,25 @@ const skills = [
 ];
 
 function Skills() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       id="skills"
@@ -30,37 +50,39 @@ function Skills() {
       <div className="max-w-5xl mx-auto w-full">
 
         {/* Heading */}
-        <header className="text-center mb-20">
-
+        <div className="text-center mb-20">
           <p className="text-cyan-400 text-lg font-medium mb-4 tracking-wide uppercase">
             Skills
           </p>
 
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             Technologies I Work With
           </h2>
 
           <p className="text-gray-400 text-lg leading-8 text-center max-w-3xl mx-auto">
-  I specialize in building responsive and modern web applications using
-  frontend technologies and development tools.
-</p>
-
-        </header>
+            I specialize in building responsive and modern web applications using
+            frontend technologies and development tools.
+          </p>
+        </div>
 
         {/* Skills Grid */}
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center">
-
+        <motion.ul
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center"
+        >
           {skills.map((skill) => {
             const Icon = skill.icon;
 
             return (
-              <li
+              <motion.li
                 key={skill.name}
+                variants={itemVariants}
                 className="w-full"
               >
-
-                <div className="group flex min-h-[260px] flex-col items-center justify-center bg-[#0f172a] border border-white/10 rounded-3xl p-8 hover:-translate-y-3 hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/10">
-
+                <div className="group flex min-h-[220px] flex-col items-center justify-center bg-[#0f172a] border border-white/10 rounded-3xl p-8 hover:-translate-y-3 hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/10">
                   {/* Icon */}
                   <div
                     className={`flex items-center justify-center mb-6 ${skill.color}`}
@@ -72,14 +94,11 @@ function Skills() {
                   <h3 className="text-2xl font-semibold text-center">
                     {skill.name}
                   </h3>
-
                 </div>
-
-              </li>
+              </motion.li>
             );
           })}
-
-        </ul>
+        </motion.ul>
 
       </div>
     </section>

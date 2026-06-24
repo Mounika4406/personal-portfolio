@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   FaEnvelope,
   FaPhoneAlt,
   FaPaperPlane,
   FaUser,
+  FaGithub,
+  FaLinkedin,
 } from "react-icons/fa";
 
 function Contact() {
@@ -18,6 +21,18 @@ function Contact() {
     console.log(formData);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="contact"
@@ -26,11 +41,16 @@ function Contact() {
       {/* Background Glow */}
       <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[750px] h-[750px] bg-cyan-500/20 blur-[180px] rounded-full"></div>
 
-      <div className="relative z-10 w-full max-w-7xl">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+        className="relative z-10 w-full max-w-7xl"
+      >
         
         {/* Heading */}
         <div className="text-center mb-16">
-
           <p className="uppercase tracking-[0.4em] text-cyan-400 text-xs font-semibold mb-5">
             CONTACT
           </p>
@@ -51,13 +71,15 @@ function Contact() {
         {/* Main Contact Card */}
         <div className="rounded-[40px] border border-cyan-400/10 bg-white/[0.03] backdrop-blur-2xl p-8 md:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
 
-          {/* Top Contact Boxes */}
-          <div className="grid md:grid-cols-2 gap-7 mb-8">
+          {/* Top Contact Boxes (2x2 Grid) */}
+          <div className="grid md:grid-cols-2 gap-7 mb-10">
 
             {/* Email Box */}
-            <div className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 transition-all duration-300">
-
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl">
+            <a
+              href="mailto:mounikabandharu12@gmail.com"
+              className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 hover:bg-white/[0.06] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl group-hover:scale-110 transition duration-300">
                 <FaEnvelope />
               </div>
 
@@ -66,16 +88,18 @@ function Contact() {
                   Email
                 </p>
 
-                <h3 className="text-lg md:text-2xl font-semibold text-white break-all">
+                <h3 className="text-lg md:text-2xl font-semibold text-white break-all group-hover:text-cyan-400 transition-colors">
                   mounikabandharu12@gmail.com
                 </h3>
               </div>
-            </div>
+            </a>
 
             {/* Phone Box */}
-            <div className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 transition-all duration-300">
-
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl">
+            <a
+              href="tel:+916300993453"
+              className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 hover:bg-white/[0.06] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl group-hover:scale-110 transition duration-300">
                 <FaPhoneAlt />
               </div>
 
@@ -84,11 +108,55 @@ function Contact() {
                   Phone
                 </p>
 
-                <h3 className="text-lg md:text-2xl font-semibold text-white">
+                <h3 className="text-lg md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
                   +91 6300993453
                 </h3>
               </div>
-            </div>
+            </a>
+
+            {/* GitHub Box */}
+            <a
+              href="https://github.com/Mounika4406"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 hover:bg-white/[0.06] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl group-hover:scale-110 transition duration-300">
+                <FaGithub />
+              </div>
+
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase text-cyan-300 mb-2">
+                  GitHub
+                </p>
+
+                <h3 className="text-lg md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                  github.com/Mounika4406
+                </h3>
+              </div>
+            </a>
+
+            {/* LinkedIn Box */}
+            <a
+              href="https://linkedin.com/in/mounika-bandharu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-5 rounded-3xl border border-cyan-400/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] px-7 py-7 hover:border-cyan-400/40 hover:bg-white/[0.06] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-400 text-xl group-hover:scale-110 transition duration-300">
+                <FaLinkedin />
+              </div>
+
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase text-cyan-300 mb-2">
+                  LinkedIn
+                </p>
+
+                <h3 className="text-lg md:text-2xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                  mounika-bandharu
+                </h3>
+              </div>
+            </a>
           </div>
 
           {/* Form */}
@@ -99,7 +167,6 @@ function Contact() {
 
               {/* Name */}
               <div className="relative">
-
                 <FaUser className="absolute top-1/2 -translate-y-1/2 left-5 text-cyan-400 text-lg" />
 
                 <input
@@ -118,7 +185,6 @@ function Contact() {
 
               {/* Email */}
               <div className="relative">
-
                 <FaEnvelope className="absolute top-1/2 -translate-y-1/2 left-5 text-cyan-400 text-lg" />
 
                 <input
@@ -138,7 +204,6 @@ function Contact() {
 
             {/* Message */}
             <div>
-
               <textarea
                 rows="7"
                 placeholder="Tell me about your project..."
@@ -156,7 +221,7 @@ function Contact() {
             {/* Button */}
             <button
               type="submit"
-              className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-500 text-white text-lg font-semibold flex items-center justify-center gap-3 hover:scale-[1.01] transition-all duration-300 shadow-[0_10px_40px_rgba(34,211,238,0.35)]"
+              className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-500 text-white text-lg font-semibold flex items-center justify-center gap-3 hover:scale-[1.01] transition-all duration-300 shadow-[0_10px_40px_rgba(34,211,238,0.35)] cursor-pointer"
             >
               <FaPaperPlane />
               Send Message
@@ -164,7 +229,7 @@ function Contact() {
 
           </form>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

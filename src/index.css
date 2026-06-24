@@ -18,3 +18,29 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Prefers Reduced Motion Accessibility Rule */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive Viewport Media Queries */
+@media (max-width: 640px) {
+  /* Mobile-specific tweaks */
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablet-specific tweaks */
+}
+
+@media (min-width: 1025px) {
+  /* Desktop-specific tweaks */
+}
